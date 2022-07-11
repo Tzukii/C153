@@ -1,3 +1,4 @@
+//Terrain Rotation
 AFRAME.registerComponent("terrain-rotation-reader", {
     schema: {
         speedOfRotation: { type: "number", default: 0 },
@@ -6,18 +7,16 @@ AFRAME.registerComponent("terrain-rotation-reader", {
         window.addEventListener("keydown", (e) => {
             if (e.key === "D") {
                 if (this.data.speedOfRotation < 0.1) {
-                    this.data.speedOfRotation += 0.1;
+                    this.data.speedOfRotation += 0.01;
                 }
             }
-
             if (e.key === "A") {
                 if (this.data.speedOfRotation > -0.1) {
-                    this.data.speedOfRotation -= 0.1;
+                    this.data.speedOfRotation -= 0.01;
                 }
             }
         });
     },
-
     tick: function () {
         var mapRotation = this.el.getAttribute("rotation");
 
@@ -31,6 +30,7 @@ AFRAME.registerComponent("terrain-rotation-reader", {
     },
 });
 
+//Plane rotation component
 AFRAME.registerComponent("plane-rotation-reader", {
     schema: {
         speedOfRotation: { type: "number", default: 0 },
@@ -38,44 +38,47 @@ AFRAME.registerComponent("plane-rotation-reader", {
     },
     init: function () {
         window.addEventListener("keydown", (e) => {
+
+            //get the data from the attributes
             this.data.speedOfRotation = this.el.getAttribute("rotation");
             this.data.speedOfAscent = this.el.getAttribute("position");
 
             var planeRotation = this.data.speedOfRotation;
             var planePosition = this.data.speedOfAscent;
 
+            //control the attributes with the Arrow Keys
             if (e.key === "D") {
                 if (planeRotation.x < 10) {
                     planeRotation.x += 0.5;
-                    this.el.setAttribute("rotation", planeRotation)
+                    this.el.setAttribute("rotation", planeRotation);
                 }
             }
             if (e.key === "A") {
                 if (planeRotation.x > -10) {
                     planeRotation.x -= 0.5;
-                    this.el.setAttribute("rotation", planeRotation)
+                    this.el.setAttribute("rotation", planeRotation);
                 }
             }
             if (e.key === "W") {
                 if (planeRotation.z < 20) {
-                    planeRotation.x += 0.5;
-                    this.el.setAttribute("rotation", planeRotation)
+                    planeRotation.z += 0.5;
+                    this.el.setAttribute("rotation", planeRotation);
                 }
                 if (planePosition.y < 2) {
                     planePosition.y += 0.01;
-                    this.el.setAttribute("position", planePosition)
+                    this.el.setAttribute("position", planePosition);
                 }
             }
             if (e.key === "S") {
-                if (planeRotation.z > -100) {
-                    planeRotation.x -= 0.5;
-                    this.el.setAttribute("rotation", planeRotation)
+                if (planeRotation.z > -10) {
+                    planeRotation.z -= 0.5;
+                    this.el.setAttribute("rotation", planeRotation);
                 }
                 if (planePosition.y > -2) {
                     planePosition.y -= 0.01;
-                    this.el.setAttribute("position", planePosition)
+                    this.el.setAttribute("position", planePosition);
                 }
             }
         });
-    },
+    }
 });
