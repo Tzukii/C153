@@ -2,8 +2,11 @@
 <html>
   <head>
     <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
 
     <script src="./components/Rotation.js"></script>
+    <script src="./components/Target.js"></script>
+    <script src="./components/Bird.js"></script>
   </head>
 
   <body>
@@ -31,6 +34,7 @@
         scale="0.3 0.3 0.3"
         animation="property: position; to: 0 0 1000;easing:linear; loop: true; dur: 150000"
         terrain-rotation-reader
+        target-ring
       >
       </a-entity>
 
