@@ -25,6 +25,15 @@ AFRAME.registerComponent("birds", {
 
         birdEl.setAttribute("animation-mixer", {});
 
+        birdEl.setAttribute("static-body", {
+            shape: "sphere",
+            sphereRadius: 5,
+        });
+
+        birdEl.setAttribute("game-play", {
+            elementId: `#${id}`,
+        });
+
         terrainEl.appendChild(birdEl);
     }
 })
